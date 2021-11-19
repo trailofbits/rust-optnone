@@ -40,10 +40,38 @@ pub fn speed() -> i32 {
     4 + 4
 }
 
+// CHECK-LABEL: define{{.*}}i32 @never
+// NO-OPT-SAME: [[NEVER_ATTRS:#[0-9]+]]
+// SPEED-OPT-SAME: [[NEVER_ATTRS:#[0-9]+]]
+// SIZE-OPT-SAME: [[NEVER_ATTRS:#[0-9]+]]
+// NO-OPT: ret i32 10
+// SIZE-OPT: ret i32 10
+// SPEED-OPT: ret i32 10
+#[optimize(never)]
+#[no_mangle]
+pub fn never() -> i32 {
+    5 + 5
+}
+
+// CHECK-LABEL: define{{.*}}i32 @neverinline
+// NO-OPT-SAME: [[NEVER_ATTRS:#[0-9]+]]
+// SPEED-OPT-SAME: [[NEVER_ATTRS:#[0-9]+]]
+// SIZE-OPT-SAME: [[NEVER_ATTRS:#[0-9]+]]
+// NO-OPT: ret i32 12
+// SIZE-OPT: ret i32 12
+// SPEED-OPT: ret i32 12
+#[optimize(never)]
+#[inline(always)]
+#[no_mangle]
+pub fn neverinline() -> i32 {
+    6 + 6
+}
+
 // NO-OPT-DAG: attributes [[SIZE_ATTRS]] = {{.*}}minsize{{.*}}optsize{{.*}}
 // SPEED-OPT-DAG: attributes [[SIZE_ATTRS]] = {{.*}}minsize{{.*}}optsize{{.*}}
 // SIZE-OPT-DAG: attributes [[NOTHING_ATTRS]] = {{.*}}optsize{{.*}}
 // SIZE-OPT-DAG: attributes [[SIZE_ATTRS]] = {{.*}}minsize{{.*}}optsize{{.*}}
+// NO-OPT-DAG: attributes [[NEVER_ATTRS]] = {{.*}}noinline{{.*}}optnone
 
 // SIZE-OPT: attributes [[SPEED_ATTRS]]
 // SIZE-OPT-NOT: minsize

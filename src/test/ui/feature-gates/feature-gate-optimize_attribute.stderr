@@ -1,5 +1,5 @@
 error[E0658]: the `#[optimize]` attribute is an experimental feature
-  --> $DIR/feature-gate-optimize_attribute.rs:7:1
+  --> $DIR/feature-gate-optimize_attribute.rs:10:1
    |
 LL | #[optimize(size)]
    | ^^^^^^^^^^^^^^^^^
@@ -8,7 +8,7 @@ LL | #[optimize(size)]
    = help: add `#![feature(optimize_attribute)]` to the crate attributes to enable
 
 error[E0658]: the `#[optimize]` attribute is an experimental feature
-  --> $DIR/feature-gate-optimize_attribute.rs:10:1
+  --> $DIR/feature-gate-optimize_attribute.rs:13:1
    |
 LL | #[optimize(speed)]
    | ^^^^^^^^^^^^^^^^^^
@@ -17,7 +17,16 @@ LL | #[optimize(speed)]
    = help: add `#![feature(optimize_attribute)]` to the crate attributes to enable
 
 error[E0658]: the `#[optimize]` attribute is an experimental feature
-  --> $DIR/feature-gate-optimize_attribute.rs:13:1
+  --> $DIR/feature-gate-optimize_attribute.rs:16:1
+   |
+LL | #[optimize(never)]
+   | ^^^^^^^^^^^^^^^^^^
+   |
+   = note: see issue #54882 <https://github.com/rust-lang/rust/issues/54882> for more information
+   = help: add `#![feature(optimize_attribute)]` to the crate attributes to enable
+
+error[E0658]: the `#[optimize]` attribute is an experimental feature
+  --> $DIR/feature-gate-optimize_attribute.rs:19:1
    |
 LL | #[optimize(banana)]
    | ^^^^^^^^^^^^^^^^^^^
@@ -35,6 +44,15 @@ LL | #[optimize(size)]
    = help: add `#![feature(optimize_attribute)]` to the crate attributes to enable
 
 error[E0658]: the `#[optimize]` attribute is an experimental feature
+  --> $DIR/feature-gate-optimize_attribute.rs:6:1
+   |
+LL | #[optimize(never)]
+   | ^^^^^^^^^^^^^^^^^^
+   |
+   = note: see issue #54882 <https://github.com/rust-lang/rust/issues/54882> for more information
+   = help: add `#![feature(optimize_attribute)]` to the crate attributes to enable
+
+error[E0658]: the `#[optimize]` attribute is an experimental feature
   --> $DIR/feature-gate-optimize_attribute.rs:2:1
    |
 LL | #![optimize(speed)]
@@ -44,12 +62,12 @@ LL | #![optimize(speed)]
    = help: add `#![feature(optimize_attribute)]` to the crate attributes to enable
 
 error[E0722]: invalid argument
-  --> $DIR/feature-gate-optimize_attribute.rs:13:12
+  --> $DIR/feature-gate-optimize_attribute.rs:19:12
    |
 LL | #[optimize(banana)]
    |            ^^^^^^
 
-error: aborting due to 6 previous errors
+error: aborting due to 8 previous errors
 
 Some errors have detailed explanations: E0658, E0722.
 For more information about an error, try `rustc --explain E0658`.

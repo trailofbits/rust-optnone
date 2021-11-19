@@ -2,6 +2,9 @@
 #![optimize(speed)] //~ ERROR the `#[optimize]` attribute is an experimental feature
 
 #[optimize(size)] //~ ERROR the `#[optimize]` attribute is an experimental feature
+
+#[optimize(never)] //~ ERROR the `#[optimize]` attribute is an experimental feature
+
 mod module {
 
 #[optimize(size)] //~ ERROR the `#[optimize]` attribute is an experimental feature
@@ -9,6 +12,9 @@ fn size() {}
 
 #[optimize(speed)] //~ ERROR the `#[optimize]` attribute is an experimental feature
 fn speed() {}
+
+#[optimize(never)] //~ ERROR the `#[optimize]` attribute is an experimental feature
+fn never() {}
 
 #[optimize(banana)]
 //~^ ERROR the `#[optimize]` attribute is an experimental feature

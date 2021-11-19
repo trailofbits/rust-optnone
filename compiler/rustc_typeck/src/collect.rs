@@ -3054,6 +3054,8 @@ fn codegen_fn_attrs(tcx: TyCtxt<'_>, id: DefId) -> CodegenFnAttrs {
                 if items.len() != 1 {
                     err(attr.span, "expected one argument");
                     OptimizeAttr::None
+                } else if list_contains_name(&items[..], sym::never) {
+                    OptimizeAttr::Never
                 } else if list_contains_name(&items[..], sym::size) {
                     OptimizeAttr::Size
                 } else if list_contains_name(&items[..], sym::speed) {

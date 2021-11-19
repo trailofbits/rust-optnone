@@ -222,6 +222,12 @@ pub fn from_fn_attrs(cx: &CodegenCx<'ll, 'tcx>, llfn: &'ll Value, instance: ty::
         OptimizeAttr::None => {
             default_optimisation_attrs(cx.tcx.sess, llfn);
         }
+        OptimizeAttr::Never => {
+            llvm::Attribute::MinSize.unapply_llfn(Function, llfn);
+            llvm::Attribute::OptimizeForSize.unapply_llfn(Function, llfn);
+            llvm::Attribute::OptimizeNone.apply_llfn(Function, llfn);
+            llvm::Attribute::NoInline.apply_llfn(Function, llfn); // optnone requires noinline
+        }
         OptimizeAttr::Speed => {
             llvm::Attribute::MinSize.unapply_llfn(Function, llfn);
             llvm::Attribute::OptimizeForSize.unapply_llfn(Function, llfn);
@@ -235,6 +241,8 @@ pub fn from_fn_attrs(cx: &CodegenCx<'ll, 'tcx>, llfn: &'ll Value, instance: ty::
     }
 
     let inline_attr = if codegen_fn_attrs.flags.contains(CodegenFnAttrFlags::NAKED) {
+        InlineAttr::Never
+    } else if codegen_fn_attrs.optimize == OptimizeAttr::Never {
         InlineAttr::Never
     } else if codegen_fn_attrs.inline == InlineAttr::None && instance.def.requires_inline(cx.tcx) {
         InlineAttr::Hint

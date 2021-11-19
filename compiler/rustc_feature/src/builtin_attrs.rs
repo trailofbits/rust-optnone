@@ -335,7 +335,7 @@ pub const BUILTIN_ATTRIBUTES: &[BuiltinAttribute] = &[
     gated!(no_core, CrateLevel, template!(Word), experimental!(no_core)),
     // RFC 2412
     gated!(
-        optimize, Normal, template!(List: "size|speed"), optimize_attribute,
+        optimize, Normal, template!(List: "size|speed|never"), optimize_attribute,
         experimental!(optimize),
     ),
     // RFC 2867

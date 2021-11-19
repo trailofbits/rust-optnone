@@ -898,6 +898,7 @@ pub fn provide(providers: &mut Providers) {
             let CodegenFnAttrs { optimize, .. } = tcx.codegen_fn_attrs(*id);
             match optimize {
                 attr::OptimizeAttr::None => continue,
+                attr::OptimizeAttr::Never => continue,
                 attr::OptimizeAttr::Size => continue,
                 attr::OptimizeAttr::Speed => {
                     return for_speed;
