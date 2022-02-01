@@ -6,7 +6,7 @@ This is a vanilla fork of the Rust codebase, [except for this commit](https://gi
 
 ## WARNING
 
-This code is not intended for production use! In fact, the conclusion from [our blog post](link) was that it might not even be a good idea to add to Rust. That is why we have not attempted to upstream the code into Rust. It is included here solely for instructional purposes.
+This code is not intended for production use! In fact, the conclusion from [our blog post](https://blog.trailofbits.com/2022/02/01/part-2-rusty-crypto/) was that it might not even be a good idea to add to Rust. That is why we have not attempted to upstream the code into Rust. It is included here solely for instructional purposes.
 
 ## License
 Rust optnone is licensed and distributed under the [Apache v2.0](LICENSE-APACHE) license. [Contact us](mailto:opensource@trailofbits.com) if you're looking for an exception to the terms.
